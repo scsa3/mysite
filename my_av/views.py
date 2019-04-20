@@ -13,15 +13,15 @@ def index(request):
     return render(request, 'my_av/index.html', context)
 
 
-def detail(request, video_id):
+def movie(request, video_id):
     video = Video.objects.get(pk=video_id)
     context = {
         'title': video.title,
         'fanart_url': video.fanart_url,
-        'actress': video.actress.all(),
-        'genre': video.genre.all()
+        'actress_list': video.actress.all(),
+        'genre_list': video.genre.all()
     }
-    return render(request, 'my_av/detail.html', context)
+    return render(request, 'my_av/movie.html', context)
 
 
 def search(request):

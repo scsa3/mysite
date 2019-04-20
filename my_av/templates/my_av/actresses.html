@@ -1,0 +1,12 @@
+<div>
+    {% for actress in actress_list %}
+        <div class="actress">
+            <a href="{{ prefix_url }}actress={{ actress.id }}">
+                <div class="actress-pic">
+                    <img src="{{ actress.art_url }}" alt="">
+                </div>
+                <div class="actress-name">{{ actress.name }}</div>
+            </a>
+        </div>
+    {% endfor %}
+</div>

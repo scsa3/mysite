@@ -1,19 +1,7 @@
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'my_av/test.css' %}">
-<div>
-    {{ request.path }}
-</div>
-<div>
-    {{ request.get_full_path }}
-</div>
-{% block filter %}
-{% endblock %}
-<hr>
 <div class="movie-list">
     {% for video in video_list %}
         <div class="movie">
-            <a href="{% url 'my_av:detail' video.id %}">
+            <a href="{% url 'my_av:movie' video.id %}">
                 <div class="movie poster">
                     <img src="{{ video.poster_url }}" alt="">
                 </div>
@@ -24,6 +12,3 @@
         </div>
     {% endfor %}
 </div>
-
-<hr>
-

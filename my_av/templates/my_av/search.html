@@ -1,7 +1,6 @@
-{% extends "my_av/base.html" %}
-
-{% block filter %}
-    {% with my_test=request.get_full_path|add:'&' %}
-        {% include "my_av/filter.html" %}
-    {% endwith %}
-{% endblock %}
+{% include 'my_av/index-link.html' %}
+{% with prefix_url=request.get_full_path|add:'&' %}
+    {% include 'my_av/actresses.html' %}
+    {% include 'my_av/genres.html' %}
+    {% include 'my_av/movies.html' %}
+{% endwith %}

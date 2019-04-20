@@ -6,5 +6,5 @@ app_name = 'my_av'
 urlpatterns = [
     path('', views.index, name='index'),
     path('search/', views.search, name='search'),
-    path('<int:video_id>/', views.detail, name='detail'),
+    path('movie/<int:video_id>/', views.movie, name='movie'),
 ]
