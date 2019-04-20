@@ -25,20 +25,18 @@ def detail(request, video_id):
 
 
 def search(request):
-    actress_ids = request.GET.get('actress', [])
-    # actress_qs = Video.objects.filter(actress__in=actress_ids)
-    actress_qs = Video.objects.all()
+    video_qs = Video.objects
+    actress_ids = request.GET.getlist('actress', [])
     for actress_id in actress_ids:
-        print(actress_id)
-        actress_qs = actress_qs.filter(actress=actress_id)
+        video_qs = video_qs.filter(actress__id=actress_id)
 
-    genre_list = request.GET.get('genre', [])
-    genre_qs = Video.objects.filter(genre__in=genre_list)
-    video_list = (actress_qs| genre_qs).distinct()
-    video_ids = video_list.values_list('id', flat=True).distinct()
+    genre_ids = request.GET.getlist('genre', [])
+    for genre_id in genre_ids:
+        video_qs = video_qs.filter(genre__id=genre_id)
 
+    video_ids = video_qs.values_list('id', flat=True)
     context = {
-        'video_list': Video.objects.filter(id__in=video_ids),
+        'video_list': video_qs.distinct(),
         'actress_list': Actress.objects.filter(video__in=video_ids).distinct(),
         'genre_list': Genre.objects.filter(video__in=video_ids).distinct(),
     }

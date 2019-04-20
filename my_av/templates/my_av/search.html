@@ -1,0 +1,7 @@
+{% extends "my_av/base.html" %}
+
+{% block filter %}
+    {% with my_test=request.get_full_path|add:'&' %}
+        {% include "my_av/filter.html" %}
+    {% endwith %}
+{% endblock %}

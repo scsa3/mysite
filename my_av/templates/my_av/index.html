@@ -1,0 +1,7 @@
+{% extends "my_av/base.html" with myurl="123" %}
+
+{% block filter %}
+    {% with my_test='search/?' %}
+        {% include "my_av/filter.html" %}
+    {% endwith %}
+{% endblock %}
