@@ -1,0 +1,39 @@
+{% if movie.sample_url %}
+    <video poster="{{ movie.fanart_url }}" id=cspd_video controls>
+        <source src="{{ movie.sample_url }}" type="video/mp4">
+    </video>
+{% else %}
+    <img src="{{ movie.sample_url }}" alt="">
+{% endif %}
+
+
+<script>
+    let theVideo = document.getElementById("cspd_video");
+    document.onkeydown = function (event) {
+        let vid_currentTime = theVideo.currentTime;
+        let changeTime;
+        if (event.ctrlKey) {
+            changeTime = 10;
+        } else if (event.shiftKey) {
+            changeTime = 30;
+        } else {
+            changeTime = 5;
+        }
+        switch (event.keyCode) {
+            case 37:
+                event.preventDefault();
+                theVideo.currentTime = vid_currentTime - changeTime;
+                break;
+            case 39:
+                event.preventDefault();
+                theVideo.currentTime = vid_currentTime + changeTime;
+                break;
+            case 32:
+                event.preventDefault();
+                if (theVideo.paused)
+                    theVideo.play();
+                else
+                    theVideo.pause();
+        }
+    };
+</script>
