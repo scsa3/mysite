@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>{{ debug }}</div>
+<form action="{% url 'my_av:file' %}" method="get">
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+<div>
+    {% for file in files %}
+        <div>{{ file }}</div>
+    {% endfor %}
+</div>
+</body>
+</html>

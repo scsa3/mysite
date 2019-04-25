@@ -1,6 +1,9 @@
-{% include 'my_av/index-link.html' %}
-{% with prefix_url=request.get_full_path|add:'&' %}
-    {% include 'my_av/actresses.html' %}
-    {% include 'my_av/genres.html' %}
-    {% include 'my_av/movies.html' %}
-{% endwith %}
+{% extends 'my_av/base.html' %}
+{% block body %}
+    {% include 'my_av/index-link.html' %}
+    {% with prefix_url=request.get_full_path|add:'&' %}
+        {% include 'my_av/actresses.html' %}
+        {% include 'my_av/genres.html' %}
+        {% include 'my_av/movies.html' %}
+    {% endwith %}
+{% endblock %}

@@ -1,7 +1,10 @@
-{% include 'my_av/index-link.html' %}
-{% url 'my_av:search' as search_url %}
-{% with prefix_url=search_url|add:'?' %}
-    {% include 'my_av/actresses.html' %}
-    {% include 'my_av/genres.html' %}
-    {% include 'my_av/movies.html' %}
-{% endwith %}
+{% extends 'my_av/base.html' %}
+{% block body %}
+    {% include 'my_av/index-link.html' %}
+    {% url 'my_av:search' as search_url %}
+    {% with prefix_url=search_url|add:'?' %}
+        {% include 'my_av/actresses.html' with display_pic=False %}
+        {% include 'my_av/genres.html' %}
+        {% include 'my_av/movies.html' %}
+    {% endwith %}
+{% endblock %}

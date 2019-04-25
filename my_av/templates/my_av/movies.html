@@ -1,6 +1,9 @@
-<div class="movie-list">
+<h4>Movies:</h4>
+{#<div class="movie-list">#}
+<div class="row">
     {% for video in video_list %}
-        <div class="movie">
+{#        <div class="movie">#}
+        <div class="col">
             <a href="{% url 'my_av:movie' video.id %}">
                 <div class="movie poster">
                     <img src="{{ video.poster_url }}" alt="">

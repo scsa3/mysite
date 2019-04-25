@@ -19,21 +19,20 @@
         } else {
             changeTime = 5;
         }
-        switch (event.keyCode) {
-            case 37:
-                event.preventDefault();
+        event.preventDefault();
+        switch (event.key) {
+            case "ArrowLeft":
                 theVideo.currentTime = vid_currentTime - changeTime;
                 break;
-            case 39:
-                event.preventDefault();
+            case "ArrowRight":
                 theVideo.currentTime = vid_currentTime + changeTime;
                 break;
-            case 32:
-                event.preventDefault();
+            case " ":
                 if (theVideo.paused)
                     theVideo.play();
                 else
                     theVideo.pause();
+                break;
         }
     };
 </script>

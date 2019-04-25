@@ -1,12 +1,24 @@
-<div>
+<h4>Actresses:</h4>
+<div class="">
     {% for actress in actress_list %}
-        <div class="actress">
+        <div class="">
+
             <a href="{{ prefix_url }}actress={{ actress.id }}">
-                <div class="actress-pic">
-                    <img src="{{ actress.art_url }}" alt="">
-                </div>
+                {% if display_pic != False %}
+                    <div class="actress-pic">
+                        <img src="{{ actress.art_url }}" class="img-circle" alt="">
+                    </div>
+                {% endif %}
                 <div class="actress-name">{{ actress.name }}</div>
             </a>
         </div>
     {% endfor %}
+{#    <form action="{% url 'my_av:search' %}" method="get">#}
+{#        {% for form in form_set %}#}
+{#            <div>#}
+{#                {{ form }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#        <input type="submit" value="Submit">#}
+{#    </form>#}
 </div>

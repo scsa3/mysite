@@ -17,6 +17,7 @@ class Genre(models.Model):
 
 
 class Video(models.Model):
+    sample_url = models.URLField(null=True, blank=True)
     fanart_url = models.URLField(null=True, blank=True)
     poster_url = models.URLField(null=True, blank=True)
     dvd_id = models.CharField(max_length=200)

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import reverse
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
 from .models import Video, Actress, Genre
@@ -41,12 +42,20 @@ class GenreInline(admin.TabularInline):
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ['dvd_id', 'title', 'get_actress']
+    list_filter = ('actress__name', 'genre__name')
+    list_display = ('get_test', 'title',)
+    list_display_links = ('get_test', 'title',)
+    search_fields = ('dvd_id',)
+    actions = None
 
     def get_actress(self, obj):
         return ", ".join([p.name for p in obj.actress.all()])
 
     get_actress.admin_order_field = 'actress__name'
+
+    def get_test(self, obj):
+        # return format_html('<img src="{}">', obj.poster_url)
+        return format_html('{}', obj.poster_url)
 
 
 class ActressAdmin(admin.ModelAdmin):
