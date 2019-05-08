@@ -1,24 +1,23 @@
 {% extends 'my_av/base.html' %}
+
 {% block body %}
-    {% include 'my_av/index-link.html' %}
-    <div class="container-fluid">
-        <div class="row">
-            {% url 'my_av:search' as search_url %}
-            {% with prefix_url=search_url|add:'?' %}
-                <div class="col">
-                    <div class="pre-scrollable">
-                        {% include 'my_av/movies.html' %}
+    <div class="w3-container">
+        {% url 'my_av:search' as search_url %}
+        {% with prefix_url=search_url|add:'?' %}
+            <div class="w3-row">
+                <div class="w3-col w3-sidebar w3-bar-block l3 m4 w3-hide-small" style="right:0">
+                    <div class="w3-container">
+                        {% include 'my_av/index-actress.html' with display_pic=False %}
+                    </div>
+                    <div class="w3-container">
+                        {% include 'my_av/index-genres.html' %}
                     </div>
                 </div>
-                <div class="col">
-                    <div class="pre-scrollable">
-                        {% include 'my_av/actresses.html' with display_pic=False %}
-                    </div>
-                    <div class="pre-scrollable">
-                        {% include 'my_av/genres.html' %}
-                    </div>
+                <div class="w3-col w3-container l9 m8 s12">
+                    {% include 'my_av/index-movies.html' %}
                 </div>
-            {% endwith %}
-        </div>
+
+            </div>
+        {% endwith %}
     </div>
 {% endblock %}

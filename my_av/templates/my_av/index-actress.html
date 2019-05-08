@@ -1,0 +1,40 @@
+<div class="w3-dropdown-click">
+    <button class="w3-button w3-black" onclick="dropFunction()">Actresses</button>
+    <div class="w3-dropdown-content w3-bar-block w3-card w3-light-grey" id="myDIV">
+        <input class="w3-input w3-padding" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        {% for actress in actress_list %}
+            <a class="w3-bar-item w3-button" href="{{ prefix_url }}actress={{ actress.id }}">
+                {{ actress.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // Dropdown
+    function dropFunction() {
+        let x = document.getElementById("myDIV");
+        if (x.className.indexOf("w3-show") === -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+    // Filter
+    function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDIV");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+</script>

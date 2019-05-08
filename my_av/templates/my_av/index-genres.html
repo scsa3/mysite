@@ -1,0 +1,41 @@
+<div class="w3-dropdown-click">
+    <button class="w3-button w3-black" onclick="dropFunction2()">Genres</button>
+    <div class="w3-dropdown-content w3-bar-block w3-card w3-light-grey" id="myDIV2">
+        <input class="w3-input w3-padding" type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
+        {% for genre in genre_list %}
+            <a class="w3-bar-item w3-button" href="{{ prefix_url }}genre={{ genre.id }}">
+                {{ genre.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // TODO: Ugly, fix it later.
+    // Dropdown
+    function dropFunction2() {
+        let x = document.getElementById("myDIV2");
+        if (x.className.indexOf("w3-show") === -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+    // Filter
+    function filterFunction2() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput2");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDIV2");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+</script>

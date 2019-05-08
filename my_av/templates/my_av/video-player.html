@@ -1,11 +1,12 @@
 {% if movie.sample_url %}
-    <video poster="{{ movie.fanart_url }}" id=cspd_video controls>
+    <div class="row">
+        <video width="640" height="480" poster="{{ movie.fanart_url }}" id=cspd_video controls preload="auto">
         <source src="{{ movie.sample_url }}" type="video/mp4">
-    </video>
+        </video>
+    </div>
 {% else %}
     <img src="{{ movie.sample_url }}" alt="">
 {% endif %}
-
 
 <script>
     let theVideo = document.getElementById("cspd_video");
@@ -19,7 +20,6 @@
         } else {
             changeTime = 5;
         }
-        event.preventDefault();
         switch (event.key) {
             case "ArrowLeft":
                 theVideo.currentTime = vid_currentTime - changeTime;
@@ -28,6 +28,7 @@
                 theVideo.currentTime = vid_currentTime + changeTime;
                 break;
             case " ":
+                event.preventDefault();
                 if (theVideo.paused)
                     theVideo.play();
                 else

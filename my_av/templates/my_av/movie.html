@@ -1,18 +1,21 @@
 {% extends 'my_av/base.html' %}
 {% block body %}
-    {% include 'my_av/index-link.html' %}
-    {% include 'my_av/video-player.html' %}
-    <div>
-        <h3>{{ movie.title }}</h3>
-    </div>
-    {% url 'my_av:search' as search_url %}
-    {% with prefix_url=search_url|add:'?' %}
-        {% include 'my_av/genres.html' %}
-        {% with display_pic=True %}
-            {% include 'my_av/actresses.html' %}
+    <div class="w3-container">
+        {% include 'my_av/video-player.html' %}
+        <div>
+            <h3>{{ movie.title }}</h3>
+        </div>
+        {% url 'my_av:search' as search_url %}
+        {% with prefix_url=search_url|add:'?' %}
+            {% include 'my_av/genres.html' %}
+            {% with display_pic=True %}
+                {% include 'my_av/actresses.html' %}
+            {% endwith %}
         {% endwith %}
-    {% endwith %}
-    {% include 'my_av/movie-details.html' %}
+        <div class="w3-container">
+            {% include 'my_av/movie-details.html' %}
+        </div>
+    </div>
 {% endblock %}
 
 

@@ -1,26 +1,94 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>AV-Pilot</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    {#  Bootstrap  #}
+    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'my_av/my.css' %}">#}
+    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>#}
+    {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>#}
+    {##}
+    {#  Bulma  #}
+    {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">#}
+
+    {#  My  #}
+    <link rel="stylesheet" href={% static 'my_av/my.css' %}>
+
+    {#  W3  #}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+        // TODO: It's ugly, fix later.
+        // Dropdown
+        function dropMovies() {
+            let x = document.getElementById("barMovies");
+            if (x.className.indexOf("w3-show") === -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        // Filter
+        function filterMovies() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("inputMovies");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("barMovies");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+        // Dropdown
+        function dropFunction() {
+            let x = document.getElementById("barActresses");
+            if (x.className.indexOf("w3-show") === -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        // Filter
+        function filterFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("inputActresses");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("barActresses");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
 </head>
 <body>
-{% block body %}
-    <div class="container-fluid">
-        <h1>Three equal width columns</h1>
-        <p>Note: Try to add a new div with class="col" inside the row class - this will create four equal-width columns.</p>
-        <div class="row">
-            <div class="col" style="background-color:lavender;">.col</div>
-            <div class="col" style="background-color:orange;">.col</div>
-            <div class="col" style="background-color:lavender;">.col</div>
+{% block header %}
+    <div class="w3-top">
+        <div class="w3-bar w3-gray">
+            <a href="{% url 'my_av:index' %}" class="w3-bar-item w3-black w3-button">Index</a>
         </div>
     </div>
 {% endblock %}
+<br>
+<br>
+{% block body %}{% endblock %}
 </body>
 </html>
 

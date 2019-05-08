@@ -1,24 +1,13 @@
-<h4>Actresses:</h4>
-<div class="">
+<h4 class="w3-light-gray w3-container">Actresses:</h4>
+<div id="actresses" class="w3-row-padding">
     {% for actress in actress_list %}
-        <div class="">
-
+        <div id="actress" class="w3-col l1 m2 s3 w3-button">
             <a href="{{ prefix_url }}actress={{ actress.id }}">
-                {% if display_pic != False %}
-                    <div class="actress-pic">
-                        <img src="{{ actress.art_url }}" class="img-circle" alt="">
-                    </div>
-                {% endif %}
-                <div class="actress-name">{{ actress.name }}</div>
+                <div class="actress-{{ actress.id }}-pic">
+                    <img src="{{ actress.art_url }}" class="img-circle" alt="">
+                </div>
+                <div class="actress-{{ actress.id }}-name">{{ actress.name }}</div>
             </a>
         </div>
     {% endfor %}
-{#    <form action="{% url 'my_av:search' %}" method="get">#}
-{#        {% for form in form_set %}#}
-{#            <div>#}
-{#                {{ form }}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        <input type="submit" value="Submit">#}
-{#    </form>#}
 </div>
