@@ -45,6 +45,7 @@ class VideoAdmin(admin.ModelAdmin):
     list_filter = ('actress__name', 'genre__name')
     list_display = ('get_test', 'title',)
     list_display_links = ('get_test', 'title',)
+    list_per_page = 300
     search_fields = ('dvd_id',)
     actions = None
 
@@ -54,8 +55,8 @@ class VideoAdmin(admin.ModelAdmin):
     get_actress.admin_order_field = 'actress__name'
 
     def get_test(self, obj):
-        # return format_html('<img src="{}">', obj.poster_url)
-        return format_html('{}', obj.poster_url)
+        return format_html('<img src="{}">', obj.poster_url)
+        # return format_html('{}', obj.poster_url)
 
 
 class ActressAdmin(admin.ModelAdmin):
@@ -63,7 +64,12 @@ class ActressAdmin(admin.ModelAdmin):
 
 
 class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name',)
     inlines = [GenreInline]
+
+
+class MyVideo(Video):
+    pass
 
 
 admin.site.register(Video, VideoAdmin)

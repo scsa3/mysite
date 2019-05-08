@@ -2,8 +2,10 @@ from django.contrib.admin.views.main import ChangeList
 from django.shortcuts import render
 from django.db.models import Q, QuerySet
 from django.http import HttpResponse
+
+from my_av.tools import nfo_importer, videos_finder, nfos_finder
 from .models import Video, Actress, Genre
-from .forms import ActressForm, PathForm
+from .forms import ActressForm, PathForm, PathFormSet
 from django.forms import formset_factory
 from pathlib import Path
 
@@ -55,14 +57,53 @@ def search(request):
 
 def parse_folder(request):
     form = PathForm(request.GET)
-    files = []
+
     if form.is_valid():
-        path = form.cleaned_data['source_folder_path']
-        path = Path(path)
-        if path.is_dir() and path.exists():
-            files = path.glob('**/*')
-            print(files)
+        source_folder_path_str = form.cleaned_data['path']
+        source_folder_path = Path(source_folder_path_str)
+        nfos_path = nfos_finder(source_folder_path)
+        [nfo_importer(path) for path in nfos_path]
+
     else:
+        nfos_path = []
         form = PathForm()
     return render(request, 'my_av/file.html', {'form': form,
-                                               'files': files})
+                                               'nfos_path': nfos_path})
+
+
+def list_movie(request):
+    form = PathForm(request.GET)
+    if form.is_valid():
+        path_str = form.cleaned_data['path']
+        path = Path(path_str)
+        movie_paths = videos_finder(path)
+        return render(request, 'my_av/tool/path-list.html', {'paths': movie_paths})
+    else:
+        context = {'error': form.errors, 'form': PathForm()}
+        return render(request, 'my_av/tool/input-path.html', context)
+
+
+def input_path(request):
+    return render(request, 'my_av/tool/input-path.html', {'form': PathForm()})
+
+
+# TODO:change details
+def movie_filter(request, actress_slug_ids: str, genre_ids_slug: str):
+    actress_ids_list = [actress_slug_ids.split('-')]
+    genre_ids_list = [genre_ids_slug.split('-')]
+
+    video_qs = Video.objects
+
+    for actress_id in actress_ids_list:
+        video_qs = video_qs.filter(actress__id=actress_id)
+
+    for genre_id in genre_ids_list:
+        video_qs = video_qs.filter(genre__id=genre_id)
+
+    video_ids = video_qs.values_list('id', flat=True)
+    context = {
+        'video_list': video_qs.distinct(),
+        'actress_list': Actress.objects.filter(video__in=video_ids).distinct(),
+        'genre_list': Genre.objects.filter(video__in=video_ids).distinct(),
+    }
+    return render(request, 'my_av/search.html', context)

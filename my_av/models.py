@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Actress(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True)
     art_url = models.URLField(null=True, blank=True)
 
     def __str__(self):

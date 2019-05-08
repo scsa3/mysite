@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import formset_factory
 
 
 class ActressForm(forms.Form):
@@ -11,4 +12,7 @@ class GenreForm(forms.Form):
 
 
 class PathForm(forms.Form):
-    source_folder_path = forms.CharField(max_length=123)
+    path = forms.CharField(max_length=123)
+
+
+PathFormSet = formset_factory(PathForm)
