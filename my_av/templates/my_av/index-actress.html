@@ -1,6 +1,6 @@
 <div class="w3-dropdown-click">
-    <button class="w3-button w3-black" onclick="dropFunction()">Actresses</button>
-    <div class="w3-dropdown-content w3-bar-block w3-card w3-light-grey" id="myDIV">
+    <button class="w3-button w3-bar-item w3-black" onclick="dropFunction()">Actresses</button>
+    <div class="w3-dropdown-content w3-card w3-light-grey" id="myDIV">
         <input class="w3-input w3-padding" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
         {% for actress in actress_list %}
             <a class="w3-bar-item w3-button" href="{{ prefix_url }}actress={{ actress.id }}">
