@@ -5,9 +5,12 @@
         {% url 'my_av:search' as search_url %}
         {% with prefix_url=search_url|add:'?' %}
             <div class="w3-row">
-                <div class="w3-col w3-sidebar w3-bar-block l3 m4 w3-hide-small" style="right:0">
+                <div id="sidebar" class="w3-col w3-sidebar w3-bar-block l3 m4 w3-hide-small" style="right:0">
                     <div class="w3-container">
-                        {% include 'my_av/index-actress.html' with display_pic=False %}
+                        <div class="w3-bar-item w3-light-gray">Search by</div>
+                    </div>
+                    <div class="w3-container">
+                        {% include 'my_av/index-actress.html' %}
                     </div>
                     <div class="w3-container">
                         {% include 'my_av/index-genres.html' %}
