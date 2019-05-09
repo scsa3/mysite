@@ -1,26 +1,5 @@
 {% extends 'my_av/base.html' %}
 
 {% block body %}
-    <div class="w3-container">
-        {% url 'my_av:search' as search_url %}
-        {% with prefix_url=search_url|add:'?' %}
-            <div class="w3-row">
-                <div id="sidebar" class="w3-col w3-sidebar w3-bar-block l3 m4 w3-hide-small" style="right:0">
-                    <div class="w3-container">
-                        <div class="w3-bar-item w3-light-gray">Search by</div>
-                    </div>
-                    <div class="w3-container">
-                        {% include 'my_av/index-actress.html' %}
-                    </div>
-                    <div class="w3-container">
-                        {% include 'my_av/index-genres.html' %}
-                    </div>
-                </div>
-                <div class="w3-col w3-container l9 m8 s12">
-                    {% include 'my_av/index-movies.html' %}
-                </div>
-
-            </div>
-        {% endwith %}
-    </div>
+    {% include 'my_av/movies.html' %}
 {% endblock %}

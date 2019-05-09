@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {#  Bootstrap  #}
-    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">#}
-    {#    <link rel="stylesheet" type="text/css" href="{% static 'my_av/my.css' %}">#}
-    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
-    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>#}
-    {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>#}
-    {##}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'my_av/my.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     {#  Bulma  #}
     {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">#}
 
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href={% static 'my_av/my.css' %}>
 
     {#  W3  #}
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{#    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">#}
     <script>
         // TODO: It's ugly, fix later.
         // Dropdown
@@ -49,6 +49,7 @@
                 }
             }
         }
+
         // Dropdown
         function dropFunction() {
             let x = document.getElementById("barActresses");
@@ -79,15 +80,9 @@
 
 </head>
 <body>
-{% block header %}
-    <div class="w3-top">
-        <div class="w3-bar w3-gray">
-            <a href="{% url 'my_av:index' %}" class="w3-bar-item w3-black w3-button">Index</a>
-        </div>
-    </div>
+{% block navbar %}
+    {% include 'my_av/navbar.html' %}
 {% endblock %}
-<br>
-<br>
 {% block body %}{% endblock %}
 </body>
 </html>
