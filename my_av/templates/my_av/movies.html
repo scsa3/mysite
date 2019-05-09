@@ -3,7 +3,7 @@
         {% for video in video_list %}
             <a href="{% url 'my_av:movie' video.id %}" class="col bg-white">
                 <div>
-                    <img src="{{ video.poster_url }}">
+                    <img src="{{ video.poster_url }}" alt="No Image">
                 </div>
                 <div class="block-with-text">
                     {{ video.title }}
