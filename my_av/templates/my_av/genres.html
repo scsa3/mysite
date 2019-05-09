@@ -1,10 +1,12 @@
 <div class="w3-container">
-<h4 class="w3-light-gray">Genres:</h4>
-{% for genre in genre_list %}
-    <div class="genre">
-        <a href="{{ prefix_url }}genre={{ genre.id }}">
-            {{ genre.name }}
-        </a>
+    <h4 class="w3-light-gray">Genres:</h4>
+    <div class="w3-row-padding">
+        {% for genre in genre_list %}
+            <div class="w3-col l1 w3-button">
+                <a href="{{ prefix_url }}genre={{ genre.id }}">
+                    {{ genre.name }}
+                </a>
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
 </div>
