@@ -6,10 +6,10 @@
             <a class="nav-link" href={% url 'my_av:index' %}>Index</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Movies</a>
+            <a class="nav-link" href={% url 'my_av:movies' %}>Movies</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Filter</a>
+            <a class="nav-link" href={% url 'my_av:filter' actress_slug_ids='-' genre_slug_ids='-' %}>Filter</a>
         </li>
     </ul>
 </nav>

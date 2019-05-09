@@ -25,6 +25,15 @@ def index(request):
     return render(request, 'my_av/index.html', context)
 
 
+def movies(request):
+    context = {
+        'video_list': Video.objects.all(),
+        'actress_list': Actress.objects.all(),
+        'genre_list': Genre.objects.all(),
+    }
+    return render(request, 'my_av/index.html', context)
+
+
 def movie(request, video_id):
     video = Video.objects.get(pk=video_id)
     context = {
@@ -88,22 +97,33 @@ def input_path(request):
 
 
 # TODO:change details
-def movie_filter(request, actress_slug_ids: str, genre_ids_slug: str):
-    actress_ids_list = [actress_slug_ids.split('-')]
-    genre_ids_list = [genre_ids_slug.split('-')]
-
+def filter_(request, actress_slug_ids: str, genre_slug_ids: str):
     video_qs = Video.objects
 
-    for actress_id in actress_ids_list:
-        video_qs = video_qs.filter(actress__id=actress_id)
+    if actress_slug_ids != '-':
+        actress_ids_list = actress_slug_ids.split('-')
+        for actress_id in actress_ids_list:
+            video_qs = video_qs.filter(actress__id=actress_id)
+        actress_prefix_url = '{}-'.format('-'.join(actress_ids_list))
+    else:
+        actress_prefix_url = ''
 
-    for genre_id in genre_ids_list:
-        video_qs = video_qs.filter(genre__id=genre_id)
+    if genre_slug_ids != '-':
+        genre_ids_list = genre_slug_ids.split('-')
+        for genre_id in genre_ids_list:
+            video_qs = video_qs.filter(genre__id=genre_id)
+        genre_prefix_url = '{}-'.format('-'.join(genre_ids_list))
+    else:
+        genre_prefix_url = ''
 
     video_ids = video_qs.values_list('id', flat=True)
     context = {
         'video_list': video_qs.distinct(),
         'actress_list': Actress.objects.filter(video__in=video_ids).distinct(),
         'genre_list': Genre.objects.filter(video__in=video_ids).distinct(),
+        'actress_slug_ids': actress_slug_ids,
+        'genre_slug_ids': genre_slug_ids,
+        'actress_prefix_url': actress_prefix_url,
+        'genre_prefix_url': genre_prefix_url,
     }
-    return render(request, 'my_av/search.html', context)
+    return render(request, 'my_av/filter.html', context)
