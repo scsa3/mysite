@@ -1,8 +1,8 @@
 <div class="row">
     {% for actress in actress_list %}
-        <div id="actress" class="col container-fluid">
+        <div id="actress-{{ actress.id }}" class="col">
             {% with actress.id|stringformat:"i" as id_string %}
-                <a href="{% url 'my_av:filter' actress_slug_ids=actress_prefix_url|add:id_string genre_slug_ids='-' %}">
+                <a href="{% url 'my_av:filter' actress_slug_ids=actress_prefix_url|add:id_string genre_slug_ids=genre_slug_ids %}">
                     <div id="actress-{{ actress.id }}-pic">
                         {% load static %}
                         {% static 'my_av/No_image_available.svg' as test %}
