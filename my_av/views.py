@@ -41,6 +41,9 @@ def movie(request, video_id):
         'genre_list': video.genre.all(),
         'movie': video,
     }
+    for a in context['actress_list']:
+        a.a_slug = a.id
+        a.g_slug = '-'
     return render(request, 'my_av/movie.html', context)
 
 
@@ -104,10 +107,9 @@ def filter_(request, actress_slug_ids: str, genre_slug_ids: str):
         actress_id_list = actress_slug_ids.split('-')
         for actress_id in actress_id_list:
             video_qs = video_qs.filter(actress__id=actress_id)
-        actress_prefix_url = '{}-'.format('-'.join(actress_id_list))
+        actress_slug_prefix = '{}-'.format('-'.join(actress_id_list))
     else:
-        actress_id_list = []
-        actress_prefix_url = ''
+        actress_slug_prefix = ''
 
     if genre_slug_ids != '-':
         genre_ids_list = genre_slug_ids.split('-')
@@ -119,12 +121,15 @@ def filter_(request, actress_slug_ids: str, genre_slug_ids: str):
         genre_prefix_url = ''
 
     video_ids = video_qs.values_list('id', flat=True)
+    actress_list = Actress.objects.filter(video__in=video_ids).distinct()
+    for a in actress_list:
+        a.a_slug = actress_slug_prefix + str(a.id)
+        a.g_slug = genre_slug_ids
     context = {
         'video_list': video_qs.distinct(),
-        'actress_list': Actress.objects.filter(video__in=video_ids).distinct(),
+
+        'actress_list': actress_list,
         'actress_slug_ids': actress_slug_ids,
-        'actress_id_list': actress_id_list,
-        'actress_prefix_url': actress_prefix_url,
 
         'genre_list': Genre.objects.filter(video__in=video_ids).distinct(),
         'genre_slug_ids': genre_slug_ids,

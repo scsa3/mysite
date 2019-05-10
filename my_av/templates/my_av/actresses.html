@@ -1,12 +1,15 @@
-<h4 class="w3-light-gray w3-container">Actresses:</h4>
-<div id="actresses" class="w3-row-padding">
+<div class="row">
     {% for actress in actress_list %}
-        <div id="actress" class="w3-col l1 m2 s3 w3-button">
-            <a href="{{ prefix_url }}actress={{ actress.id }}">
-                <div class="actress-{{ actress.id }}-pic">
-                    <img src="{{ actress.art_url }}" class="img-circle" alt="">
+        <div id="actress-{{ actress.id }}" class="col ">
+            <a href="{% url 'my_av:filter' actress_slug_ids=actress.a_url genre_slug_ids=actress.g_url %}">
+                <div id="actress-{{ actress.id }}-pic">
+                    {% load static %}
+                    {% static 'my_av/No_image_available.svg' as no_image %}
+                    <img src="{{ actress.art_url|default:no_image }}" class="actress-img" alt="no image">
                 </div>
-                <div class="actress-{{ actress.id }}-name">{{ actress.name }}</div>
+                <div id="actress-{{ actress.id }}-name">
+                    {{ actress.name }}
+                </div>
             </a>
         </div>
     {% endfor %}
