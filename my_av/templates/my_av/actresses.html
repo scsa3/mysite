@@ -5,7 +5,8 @@
                 <div id="actress-{{ actress.id }}-pic">
                     {% load static %}
                     {% static 'my_av/No_image_available.svg' as no_image %}
-                    <img src="{{ actress.art_url|default:no_image }}" class="actress-img" alt="no image">
+                    <img src="{{ actress.art_url|default:no_image }}" class="rounded-circle" alt="no image"
+                         style="width: 125px;height: 125px">
                 </div>
                 <div id="actress-{{ actress.id }}-name">
                     {{ actress.name }}

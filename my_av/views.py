@@ -47,26 +47,6 @@ def movie(request, video_id):
     return render(request, 'my_av/movie.html', context)
 
 
-def search(request):
-    # TODO: Need replace by forms.py
-    video_qs = Video.objects
-    actress_ids = request.GET.getlist('actress', [])
-    for actress_id in actress_ids:
-        video_qs = video_qs.filter(actress__id=actress_id)
-
-    genre_ids = request.GET.getlist('genre', [])
-    for genre_id in genre_ids:
-        video_qs = video_qs.filter(genre__id=genre_id)
-
-    video_ids = video_qs.values_list('id', flat=True)
-    context = {
-        'video_list': video_qs.distinct(),
-        'actress_list': Actress.objects.filter(video__in=video_ids).distinct(),
-        'genre_list': Genre.objects.filter(video__in=video_ids).distinct(),
-    }
-    return render(request, 'my_av/search.html', context)
-
-
 def parse_folder(request):
     form = PathForm(request.GET)
 
@@ -99,7 +79,7 @@ def input_path(request):
     return render(request, 'my_av/tool/input-path.html', {'form': PathForm()})
 
 
-# TODO:change details
+# TODO: clean genres part
 def filter_(request, actress_slug_ids: str, genre_slug_ids: str):
     video_qs = Video.objects
 

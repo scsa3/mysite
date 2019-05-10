@@ -14,6 +14,7 @@
 /* styles for '...' */
 .block-with-text {
     /*solution for webkit browser*/
+    width: 147px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
