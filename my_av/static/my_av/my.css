@@ -6,6 +6,11 @@
     background-color: #ccc;
 }
 
+.actress-img {
+    height: 125px;
+    width: 125px;
+}
+
 /* styles for '...' */
 .block-with-text {
     /*solution for webkit browser*/
