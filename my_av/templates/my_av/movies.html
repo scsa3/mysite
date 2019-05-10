@@ -1,9 +1,9 @@
 <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-start">
         {% for video in video_list %}
             <a href="{% url 'my_av:movie' video.id %}" class="col">
                 <div>
-                    <img src="{{ video.poster_url }}" alt="No Image">
+                    <img src="{{ video.poster_url }}" alt="No Image" style="height: 200px;width: 147px">
                 </div>
                 <div class="block-with-text">
                     {{ video.title }}

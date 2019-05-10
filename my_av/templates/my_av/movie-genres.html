@@ -1,0 +1,6 @@
+{% for genre in genre_list %}
+        <a href="{% url 'my_av:filter' actress_slug_ids='-' genre_slug_ids=genre.id %}"
+           class="btn btn-outline-primary">
+            {{ genre.name }}
+        </a>
+{% endfor %}

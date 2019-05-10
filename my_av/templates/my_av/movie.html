@@ -1,18 +1,17 @@
 {% extends 'my_av/base.html' %}
 {% block body %}
-    <div class="w3-container">
-        {% include 'my_av/video-player.html' %}
-        <div>
-            <h3>{{ movie.title }}</h3>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            {% if movie.sample_url %}
+                <video poster="{{ movie.fanart_url }}" id=cspd_video controls preload="auto" style="width: 100%">
+                    <source src="{{ movie.sample_url }}" type="video/mp4">
+                </video>
+            {% else %}
+                <img src="{{ movie.fanart_url }}" alt="" style="width: 100%">
+            {% endif %}
+            <p>{{ movie.title }}</p>
         </div>
-        {% url 'my_av:search' as search_url %}
-        {% with prefix_url=search_url|add:'?' %}
-            {% include 'my_av/genres.html' %}
-            {% with display_pic=True %}
-                {% include 'my_av/actresses.html' %}
-            {% endwith %}
-        {% endwith %}
-        <div class="w3-container">
+        <div class="col-md-6 col-sm-12">
             {% include 'my_av/movie-details.html' %}
         </div>
     </div>

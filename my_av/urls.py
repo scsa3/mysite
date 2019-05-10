@@ -11,7 +11,6 @@ urlpatterns = [
     path('file/', views.parse_folder, name='file'),
     path('tool/', views.input_path, name='input'),
     path('tool/movie', views.list_movie, name='tool-list-movie'),
-
-    # TODO:Using in pages
     path('movies/filter-by/actress/<str:actress_slug_ids>/genre/<str:genre_slug_ids>/', views.filter_, name='filter'),
+    path('temp/', views.temp, name='temp')
 ]

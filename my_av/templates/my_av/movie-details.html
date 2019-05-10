@@ -1,16 +1,29 @@
-<h4>Details:</h4>
-<div>
-    {{ movie.release_date }}
-</div>
-<div>
-    {{ movie.dvd_id }}
-</div>
-<div>
+<dl>
+    <dt>
+        Actresses:
+    </dt>
+    <dd>
+        {% include 'my_av/movie-actress.html' %}
+    </dd>
 
-</div>
-<div>
+    <dt>
+        Genres:
+    </dt>
+    <dd>
+        {% include 'my_av/movie-genres.html' %}
+    </dd>
 
-</div>
-<div>
+    <dt>
+        Release Date:
+    </dt>
+    <dd>
+        {{ movie.release_date }}
+    </dd>
 
-</div>
+    <dt>
+        DVD ID:
+    </dt>
+    <dd>
+        {{ movie.dvd_id }}
+    </dd>
+</dl>
