@@ -2,13 +2,7 @@
 {% block body %}
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            {% if movie.sample_url %}
-                <video poster="{{ movie.fanart_url }}" id=cspd_video controls preload="auto" style="width: 100%">
-                    <source src="{{ movie.sample_url }}" type="video/mp4">
-                </video>
-            {% else %}
-                <img src="{{ movie.fanart_url }}" alt="" style="width: 100%">
-            {% endif %}
+            {% include 'my_av/video-player.html' %}
             <p>{{ movie.title }}</p>
         </div>
         <div class="col-md-6 col-sm-12">
