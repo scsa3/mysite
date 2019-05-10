@@ -1,7 +1,7 @@
 <div class="row">
     {% for actress in actress_list %}
         <div id="actress-{{ actress.id }}" class="col ">
-            <a href="{% url 'my_av:filter' actress_slug_ids=actress.a_url genre_slug_ids=actress.g_url %}">
+            <a href="{% url 'my_av:filter' actress_slug_ids=actress.a_slug genre_slug_ids=actress.g_slug %}">
                 <div id="actress-{{ actress.id }}-pic">
                     {% load static %}
                     {% static 'my_av/No_image_available.svg' as no_image %}
