@@ -1,0 +1,8 @@
+{% for genre in genre_list %}
+    {% with genre.id|stringformat:"i" as id_string %}
+        <a href="{% url 'my_av:filter' actress_slug_ids='-' genre_slug_ids=genre_prefix_url|add:id_string %}"
+           class="btn btn-outline-primary btn-block">
+            {{ genre.name }}
+        </a>
+    {% endwith %}
+{% endfor %}

@@ -3,40 +3,10 @@
     <div class="container-fluid">
         <div class="row">
             <div id="actresses" class="col-3">
-                <div class="row">
-                    {% for actress in actress_list %}
-                        <div id="actress" class="col container-fluid">
-                            {% with actress.id|stringformat:"i" as id_string %}
-                                <a href="{% url 'my_av:filter' actress_slug_ids=actress_prefix_url|add:id_string genre_slug_ids='-' %}">
-                                    <div id="actress-{{ actress.id }}-pic">
-                                        {% if actress.art_url %}
-                                            <img src="{{ actress.art_url }}" class="img-circle" alt="no image"
-                                                 style="height: 125px; width: 125px">
-                                        {% else %}
-                                            {% load static %}
-                                            <img src="{% static 'my_av/No_image_available.svg' %}" class="img-circle"
-                                                 alt="no image" style="height: 125px; width: 125px">
-                                        {% endif %}
-
-                                    </div>
-                                    <div id="actress-{{ actress.id }}-name">
-                                        {{ actress.name }}
-                                    </div>
-                                </a>
-                            {% endwith %}
-                        </div>
-                    {% endfor %}
-                </div>
+                {% include 'my_av/filter-actresses.html' %}
             </div>
             <div id="genres" class="col-3">
-                {% for genre in genre_list %}
-                    {% with genre.id|stringformat:"i" as id_string %}
-                        <a href="{% url 'my_av:filter' actress_slug_ids='-' genre_slug_ids=genre_prefix_url|add:id_string %}"
-                           class="btn btn-outline-primary btn-block">
-                            {{ genre.name }}
-                        </a>
-                    {% endwith %}
-                {% endfor %}
+                {% include 'my_av/filter-genres.html' %}
             </div>
             <div class="col-6">
                 {% include 'my_av/movies.html' %}
