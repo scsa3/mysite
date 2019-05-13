@@ -1,0 +1,15 @@
+{% extends 'my_av/base.html' %}
+{% block body %}
+    <div>{{ error }}</div>
+    <form action="{% url 'my_av:tool-list-movie' %}" method="get">
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+    <form action="{% url 'my_av:tool-list-movie' %}" method="get">
+        <div class="form-group">
+            <label for="source-path">Email address:</label>
+            <input type="text" class="form-control" id="source-path">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+<div class="d-none">
+    <label for="actress-{{ a.id }}">{{ a.name }}</label>
+    <input id="actress-{{ a.id }}" type="checkbox" name="actress" value="{{ a.id }}" {{ checked }}>
+</div>
+<button type="submit"
+        onclick="myFunc('actress-{{ a.id }}')"
+        class="btn btn-outline-primary {{ active }}">
+    <img src="{{ actress.art_url }}" alt="{{ a.name }}">
+    <span>{{ a.name }}</span>
+</button>

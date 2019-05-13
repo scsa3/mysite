@@ -1,0 +1,9 @@
+<div class="d-none">
+    <label for="genre-{{ g.id }}">{{ g.name }}</label>
+    <input id="genre-{{ g.id }}" type="checkbox" name="genre" value="{{ g.id }}" {{ checked }}>
+</div>
+<button type="submit"
+        onclick="myFunc('genre-{{ g.id }}')"
+        class="btn btn-outline-primary btn-block {{ active }}">
+    {{ g.name }}
+</button>

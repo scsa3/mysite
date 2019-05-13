@@ -1,7 +1,9 @@
 from django.contrib.admin.views.main import ChangeList
+from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render
 from django.db.models import Q, QuerySet
 from django.http import HttpResponse
+from .forms import GenreFormSet
 
 from my_av.tools import nfo_importer, videos_finder, nfos_finder
 from .models import Video, Actress, Genre
@@ -47,38 +49,6 @@ def movie(request, video_id):
     return render(request, 'my_av/movie.html', context)
 
 
-def parse_folder(request):
-    form = PathForm(request.GET)
-
-    if form.is_valid():
-        source_folder_path_str = form.cleaned_data['path']
-        source_folder_path = Path(source_folder_path_str)
-        nfos_path = nfos_finder(source_folder_path)
-        [nfo_importer(path) for path in nfos_path]
-
-    else:
-        nfos_path = []
-        form = PathForm()
-    return render(request, 'my_av/file.html', {'form': form,
-                                               'nfos_path': nfos_path})
-
-
-def list_movie(request):
-    form = PathForm(request.GET)
-    if form.is_valid():
-        path_str = form.cleaned_data['path']
-        path = Path(path_str)
-        movie_paths = videos_finder(path)
-        return render(request, 'my_av/tool/path-list.html', {'paths': movie_paths})
-    else:
-        context = {'error': form.errors, 'form': PathForm()}
-        return render(request, 'my_av/tool/input-path.html', context)
-
-
-def input_path(request):
-    return render(request, 'my_av/tool/input-path.html', {'form': PathForm()})
-
-
 # TODO: clean genres part
 def filter_(request, actress_slug_ids: str, genre_slug_ids: str):
     video_qs = Video.objects
@@ -119,5 +89,101 @@ def filter_(request, actress_slug_ids: str, genre_slug_ids: str):
     return render(request, 'my_av/filter.html', context)
 
 
-def temp(request):
+# TODO: Change template and links of movies and movie.
+def filter_soap(request):
+    video_qs = Video.objects
+    selected_actress_ids = request.GET.getlist('actress')
+    selected_genre_ids = request.GET.getlist('genre')
+    for actress_id in selected_actress_ids:
+        video_qs = video_qs.filter(actress__id=actress_id)
+
+    for genre_id in selected_genre_ids:
+        video_qs = video_qs.filter(genre__id=genre_id)
+
+    video_ids = video_qs.values_list('id', flat=True)
+    actresses = Actress.objects.filter(video__in=video_ids).distinct()
+    genres = Genre.objects.filter(video__in=video_ids).distinct()
+    for actress in actresses:
+        if str(actress.id) in selected_actress_ids:
+            actress.selected = True
+
+    for genre in genres:
+        if str(genre.id) in selected_genre_ids:
+            genre.selected = True
+
+    ctx = {
+        'genres': genres,
+        'actresses': actresses,
+    }
+    return render(request, 'my_av/filter-soap.html', ctx)
+
+
+def temp(request: WSGIRequest) -> HttpResponse:
     return render(request, 'my_av/temp.html')
+
+
+# TODO: All of tool part
+def tool(request):
+    return render(request, 'my_av/tool/tool.html', {'form': PathForm()})
+
+
+def parse_folder(request):
+    form = PathForm(request.GET)
+
+    if form.is_valid():
+        source_folder_path_str = form.cleaned_data['path']
+        source_folder_path = Path(source_folder_path_str)
+        nfos_path = nfos_finder(source_folder_path)
+        [nfo_importer(path) for path in nfos_path]
+
+    else:
+        nfos_path = []
+        form = PathForm()
+    return render(request, 'my_av/file.html', {'form': form,
+                                               'nfos_path': nfos_path})
+
+
+def list_movie(request):
+    form = PathForm(request.GET)
+    if form.is_valid():
+        path_str = form.cleaned_data['path']
+        path = Path(path_str)
+        movie_paths = videos_finder(path)
+        return render(request, 'my_av/tool/list-paths.html', {'paths': movie_paths})
+    else:
+        context = {'error': form.errors, 'form': PathForm()}
+        return render(request, 'my_av/tool/tool.html', context)
+
+
+def list_files(request, source_path: str):
+    if source_path:
+        path = Path(source_path)
+        movie_paths = videos_finder(path)
+        context = {'paths': movie_paths}
+    else:
+        context = dict()
+    return request(request, 'my_av/tool/list-files.html', context)
+
+
+def list_nfos(request: WSGIRequest) -> HttpResponse:
+    form = PathForm(request.GET)
+    if form.is_valid():
+        path_str = form.cleaned_data['path']
+        path = Path(path_str)
+        nfo_paths = nfos_finder(path)
+        return render(request, 'my_av/tool/list-paths.html', {'paths': nfo_paths})
+    else:
+        context = {'error': form.errors, 'form': PathForm()}
+        return render(request, 'my_av/tool/tool.html', context)
+
+
+def import_nfos(request: WSGIRequest) -> HttpResponse:
+    form = PathForm(request.GET)
+    if form.is_valid():
+        path_str = form.cleaned_data['path']
+        path = Path(path_str)
+        nfo_paths = import_nfos(path)
+        return render(request, 'my_av/tool/list-paths.html', {'paths': nfo_paths})
+    else:
+        context = {'error': form.errors, 'form': PathForm()}
+        return render(request, 'my_av/tool/tool.html', context)

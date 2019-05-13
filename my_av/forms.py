@@ -1,5 +1,6 @@
 from django import forms
-from django.forms import formset_factory
+from django.forms import formset_factory, modelformset_factory
+from .models import Genre
 
 
 class ActressForm(forms.Form):
@@ -8,11 +9,14 @@ class ActressForm(forms.Form):
 
 
 class GenreForm(forms.Form):
-    genre = forms.IntegerField(label='Genre ID')
+    id = forms.IntegerField(label='Genre ID')
 
 
 class PathForm(forms.Form):
-    path = forms.CharField(max_length=123)
+    attrs = {'style': 'width: 100%'}
+    widget = forms.TextInput(attrs=attrs)
+    path = forms.CharField(max_length=255, widget=widget)
 
 
 PathFormSet = formset_factory(PathForm)
+GenreFormSet = modelformset_factory(Genre, fields=['id'])
