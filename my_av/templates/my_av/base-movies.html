@@ -1,0 +1,14 @@
+<div class="row">
+    {% for video in video_list %}
+        <a href="{% url 'my_av:movie' video.id %}" class="col">
+            <div>
+                {% load static %}
+                {% static 'my_av/No_image_available.svg' as no_image %}
+                <img src="{{ video.poster_url|default:no_image }}" alt="No Image" style="width: 147px;height: 200px">
+            </div>
+            <div class="block-with-text">
+                {{ video.title }}
+            </div>
+        </a>
+    {% endfor %}
+</div>

@@ -1,0 +1,18 @@
+<div class="container-fluid text-center">
+    <img src="https://images-na.ssl-images-amazon.com/images/I/51q6LsuTPrL.jpg" alt="You Shall Not Pass!!!">
+    <form action="{% url 'my_av:index' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_username">Username:</label>
+            <input id="id_username" type="text" name="username">
+        </div>
+        <div>
+            <label for="id_password">Password:</label>
+            <input id="id_password" type="password" name="password">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+
+    </form>
+</div>

@@ -1,8 +1,12 @@
+from django.contrib.auth import authenticate, login, logout
+
 from django.contrib.admin.views.main import ChangeList
 from django.core.handlers.wsgi import WSGIRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q, QuerySet
 from django.http import HttpResponse
+from django.urls import reverse
+
 from .forms import GenreFormSet
 
 from my_av.tools import nfo_importer, videos_finder, nfos_finder
@@ -12,19 +16,23 @@ from django.forms import formset_factory
 from pathlib import Path
 
 
-def index(request):
-    actress_form_set = formset_factory(ActressForm)
-    form_set = actress_form_set(initial=[
-        {'actress_id': 1, 'actress_name': 'name1'},
-        {'actress_id': 1, 'actress_name': 'name1'},
-    ])
-    context = {
-        'video_list': Video.objects.all(),
-        'actress_list': Actress.objects.all(),
-        'genre_list': Genre.objects.all(),
-        'form_set': form_set
-    }
-    return render(request, 'my_av/index.html', context)
+def index(request: WSGIRequest) -> HttpResponse:
+    return redirect('my_av:movies')
+
+
+def login_view(request: WSGIRequest) -> HttpResponse:
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+    return redirect('my_av:movies')
+
+
+def logout_view(request: WSGIRequest) -> HttpResponse:
+    logout(request)
+    return redirect('my_av:index')
 
 
 def movies(request):
@@ -33,7 +41,7 @@ def movies(request):
         'actress_list': Actress.objects.all(),
         'genre_list': Genre.objects.all(),
     }
-    return render(request, 'my_av/index.html', context)
+    return render(request, 'my_av/movies.html', context)
 
 
 def movie(request, video_id):
@@ -50,7 +58,7 @@ def movie(request, video_id):
 
 
 # TODO: clean genres part
-def filter_(request, actress_slug_ids: str, genre_slug_ids: str):
+def filter_view(request, actress_slug_ids: str, genre_slug_ids: str):
     video_qs = Video.objects
 
     if actress_slug_ids != '-':
@@ -166,24 +174,17 @@ def list_files(request, source_path: str):
 
 
 def list_nfos(request: WSGIRequest) -> HttpResponse:
-    form = PathForm(request.GET)
-    if form.is_valid():
-        path_str = form.cleaned_data['path']
-        path = Path(path_str)
-        nfo_paths = nfos_finder(path)
-        return render(request, 'my_av/tool/list-paths.html', {'paths': nfo_paths})
-    else:
-        context = {'error': form.errors, 'form': PathForm()}
-        return render(request, 'my_av/tool/tool.html', context)
+    source_path = request.GET['source-path']
+    path = Path(source_path)
+    paths = nfos_finder(path)
+    return render(request, 'my_av/tool/list-nfos.html', {'source_path': source_path, 'paths': paths})
 
 
 def import_nfos(request: WSGIRequest) -> HttpResponse:
-    form = PathForm(request.GET)
-    if form.is_valid():
-        path_str = form.cleaned_data['path']
-        path = Path(path_str)
-        nfo_paths = import_nfos(path)
-        return render(request, 'my_av/tool/list-paths.html', {'paths': nfo_paths})
-    else:
-        context = {'error': form.errors, 'form': PathForm()}
-        return render(request, 'my_av/tool/tool.html', context)
+    source_path = request.GET['source-path']
+    path = Path(source_path)
+    paths = nfos_finder(path)
+    for nfo in paths:
+        nfo_importer(nfo)
+
+    return redirect(to=reverse('admin:index'))

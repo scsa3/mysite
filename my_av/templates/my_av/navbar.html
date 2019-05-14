@@ -3,9 +3,6 @@
     <!-- Links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href={% url 'my_av:index' %}>Index</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href={% url 'my_av:movies' %}>Movies</a>
         </li>
         <li class="nav-item">
@@ -23,8 +20,10 @@
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
+            <a class="nav-link" href={% url 'my_av:logout' %}>Logout</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href={% url 'admin:index' %}>Admin</a>
         </li>
     </ul>
-
 </nav>

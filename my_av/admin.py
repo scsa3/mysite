@@ -42,21 +42,23 @@ class GenreInline(admin.TabularInline):
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_filter = ('actress__name', 'genre__name')
-    list_display = ('get_test', 'title',)
-    list_display_links = ('get_test', 'title',)
-    list_per_page = 300
-    search_fields = ('dvd_id',)
-    actions = None
+    list_per_page = 1000
 
-    def get_actress(self, obj):
-        return ", ".join([p.name for p in obj.actress.all()])
-
-    get_actress.admin_order_field = 'actress__name'
-
-    def get_test(self, obj):
-        return format_html('<img src="{}">', obj.poster_url)
-        # return format_html('{}', obj.poster_url)
+    # list_filter = ('actress__name', 'genre__name')
+    # list_display = ('get_test', 'title',)
+    # list_display_links = ('get_test', 'title',)
+    # search_fields = ('dvd_id',)
+    # actions = None
+    #
+    # def get_actress(self, obj):
+    #     return ", ".join([p.name for p in obj.actress.all()])
+    #
+    # get_actress.admin_order_field = 'actress__name'
+    #
+    # def get_test(self, obj):
+    #     return format_html('<img src="{}">', obj.poster_url)
+    #     # return format_html('{}', obj.poster_url)
+    # pass
 
 
 class ActressAdmin(admin.ModelAdmin):
@@ -68,8 +70,8 @@ class GenreAdmin(admin.ModelAdmin):
     inlines = [GenreInline]
 
 
-class MyVideo(Video):
-    pass
+# class MyVideo(Video):
+#     pass
 
 
 admin.site.register(Video, VideoAdmin)
