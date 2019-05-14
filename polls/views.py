@@ -7,7 +7,7 @@ from .models import Video
 def index(request):
     # video_list = Video.objects.iterator()
     # context = {'video_list': video_list}
-    # return render(request, 'polls/index.html', context)
+    # return render(request, 'polls/login.html', context)
     return HttpResponse("Hello, world. You're at the my_av index.")
 
 
