@@ -1,22 +1,35 @@
 {% extends 'my_av/base.html' %}
 
 {% block body %}
-    <form action="{% url 'my_av:filter-soap' %}" method="get">
-        {% for a in actresses %}
-            {% if a.selected %}
-                {% include 'my_av/filter-soap-actress.html' with actress=a checked="checked" active="active" %}
-            {% else %}
-                {% include 'my_av/filter-soap-actress.html' with actress=a checked="" active="" %}
-            {% endif %}
-        {% endfor %}
-        {% for g in genres %}
-            {% if g.selected %}
-                {% include 'my_av/filter-soap-genres.html' with g=g checked="checked" active="active" %}
-            {% else %}
-                {% include 'my_av/filter-soap-genres.html' with g=g checked="" active="" %}
-            {% endif %}
-        {% endfor %}
-    </form>
+    <div class="container-fluid">
+
+        <form action="{% url 'my_av:filter-soap' %}" method="get">
+            <div class="row">
+                <div class="col-6 border-right">
+                    {% include 'my_av/base-movies.html' %}
+                </div>
+                <div id="actresses" class="col-3 border-right">
+                    {% for a in actresses %}
+                        {% if a.selected %}
+                            {% include 'my_av/filter-soap-actress.html' with actress=a checked="checked" active="active" %}
+                        {% else %}
+                            {% include 'my_av/filter-soap-actress.html' with actress=a checked="" active="" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div id="genres" class="col-3 border-right">
+                    {% for g in genres %}
+                        {% if g.selected %}
+                            {% include 'my_av/filter-soap-genres.html' with g=g checked="checked" active="active" %}
+                        {% else %}
+                            {% include 'my_av/filter-soap-genres.html' with g=g checked="" active="" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+    </div>
+
     <script>
         function myFunc(targetID) {
             document.getElementById(targetID).checked = !document.getElementById(targetID).checked;
