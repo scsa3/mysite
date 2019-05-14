@@ -1,5 +1,5 @@
 {% if movie.sample_url %}
-    <video poster="{{ movie.fanart_url }}" id=cspd_video controls preload="auto" style="width: 100%">
+    <video poster="{{ movie.fanart_url }}" id="cspd_video" controls preload="auto" style="width: 100%">
         <source src="{{ movie.sample_url }}" type="video/mp4">
     </video>
 {% else %}
@@ -7,6 +7,7 @@
 {% endif %}
 
 <script>
+    let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
     let theVideo = document.getElementById("cspd_video");
     document.onkeydown = function (event) {
         let vid_currentTime = theVideo.currentTime;
@@ -27,10 +28,14 @@
                 break;
             case " ":
                 event.preventDefault();
-                if (theVideo.paused)
-                    theVideo.play();
-                else
-                    theVideo.pause();
+
+                let isFocused = (document.activeElement === theVideo);
+                if (!(isChrome && isFocused)) {
+                    if (theVideo.paused)
+                        theVideo.play();
+                    else
+                        theVideo.pause();
+                }
                 break;
         }
     };
