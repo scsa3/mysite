@@ -1,8 +1,14 @@
 {% extends 'my_av/base.html' %}
 {% block body %}
-    <form action="{% url 'my_av:tool-list-nfos' %}" method="get">
-        <label for="nfo-folder-path">NFO Source Folder Path:</label>
-        <input id="nfo-folder-path" type="text" name="source-path" value="{{ source_path }}" style="width: 100%">
-        <input type="submit" value="Submit">
-    </form>
+    {% if request.user.is_superuser %}
+        <form action="{% url 'my_av:tool-list-nfos' %}" method="get">
+            <label for="nfo-folder-path">NFO Source Folder Path:</label>
+            <input id="nfo-folder-path" type="text" name="source-path" value="{{ source_path }}" style="width: 100%">
+            <input type="submit" value="Submit">
+        </form>
+    {% else %}
+        <div class="text-center">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/51q6LsuTPrL.jpg" alt="You Shall Not Pass!!!">
+        </div>
+    {% endif %}
 {% endblock %}
