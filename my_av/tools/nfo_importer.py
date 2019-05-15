@@ -1,9 +1,10 @@
-from pathlib import Path
 import xml.etree.ElementTree as ET
+from pathlib import Path
+
 from my_av.models import Video, Genre, Actress
 
 
-def nfo_importer(path: Path):
+def nfo_importer(path: Path) -> None:
     tree = ET.parse(path)
     root = tree.getroot()
 
@@ -13,15 +14,17 @@ def nfo_importer(path: Path):
     else:
         poster_url = ''
 
-    video = Video(
+    video, created = Video.objects.get_or_create(
+        title=root.find('title').text,
         sample_url=root.find('trailer').text,
+        plot=root.find('plot').text,
+        runtime=root.find('runtime').text,
         fanart_url=fanart_url,
         poster_url=poster_url,
         dvd_id=root.find('id').text,
-        title=root.find('title').text,
         release_date=root.find('releasedate').text,
+        file_path=path,
     )
-    video.save()
     for g in root.findall('genre'):
         if g.text:
             genre, created = Genre.objects.get_or_create(name=g.text)
@@ -33,11 +36,9 @@ def nfo_importer(path: Path):
             art_url=a.find('thumb').text
         )
         video.actress.add(actress)
+
+    # TODO: director, set, studio
     video.save()
-
-
-if __name__ == '__main__':
-    p = Path('/Users/weihan/mysite/temp/ABP-249.nfo')
 
 # tree = ET.parse(p)
 # root = tree.getroot()

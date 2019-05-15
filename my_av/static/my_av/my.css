@@ -21,6 +21,14 @@
     -webkit-box-orient: vertical;
 }
 
+.actress-name {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+
 /*!* create the ... *!*/
 /*.block-with-text:before {*/
 /*    !* points in the end *!*/
