@@ -1,19 +1,15 @@
-from django.contrib.auth import authenticate, login, logout
+import subprocess
+from pathlib import Path
 
-from django.contrib.admin.views.main import ChangeList
+from django.contrib.auth import authenticate, login, logout
 from django.core.handlers.wsgi import WSGIRequest
-from django.shortcuts import render, redirect
-from django.db.models import Q, QuerySet
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .forms import GenreFormSet
-
 from my_av.tools import nfo_importer, videos_finder, nfos_finder
+from .forms import PathForm
 from .models import Video, Actress, Genre
-from .forms import ActressForm, PathForm, PathFormSet
-from django.forms import formset_factory
-from pathlib import Path
 
 
 def index(request: WSGIRequest) -> HttpResponse:
@@ -120,6 +116,7 @@ def filter_soap(request):
             genre.selected = True
 
     ctx = {
+        'video_list': video_qs.distinct(),
         'genres': genres,
         'actresses': actresses,
     }
@@ -127,7 +124,17 @@ def filter_soap(request):
 
 
 def temp(request: WSGIRequest) -> HttpResponse:
+    print(request.get_full_path())
+    # return redirect(request.get_full_path)
+    # import threading
+    # t = threading.Thread(target=play_movie)
+    # t.start()
     return render(request, 'my_av/temp.html')
+
+
+def play_movie(request: WSGIRequest) -> HttpResponse:
+    subprocess.run(['vlc', 'http://mirror.cessen.com/blender.org/peach/trailer/trailer_iphone.m4v'])
+    return redirect(request.get_full_path)
 
 
 # TODO: All of tool part
