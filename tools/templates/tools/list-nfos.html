@@ -1,6 +1,6 @@
-{% extends 'my_av/tool/tool.html' %}
+{% extends 'tools/tool.html' %}
 {% block body %}
-    <form action="{% url 'my_av:import-nfos' %}" method="get">
+    <form action="{% url 'tools:import-nfos' %}" method="get">
         <label for="nfo-folder-path">NFO Source Folder Path:</label>
         <input id="nfo-folder-path" type="text" name="source-path" value="{{ source_path }}" style="width: 100%">
         <input type="submit" value="Import">

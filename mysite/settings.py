@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'my_av.apps.MyAvConfig',
     'for_test.apps.ForTestConfig',
+    'tools.apps.ToolsConfig',
 ]
 
 MIDDLEWARE = [
