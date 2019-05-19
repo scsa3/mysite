@@ -1,0 +1,15 @@
+{% extends 'my_av/base.html' %}
+{% block body %}
+    {% if request.user.is_superuser %}
+        <form action="{% url 'tools:tools-list-nfos' %}" method="get">
+            <label for="nfos-folder-path">NFOs Folder Path:</label>
+            <input id="nfos-folder-path" type="text" name="source-path" value="{{ source_path }}" style="width: 100%">
+            <input type="submit" value="Search NFO Files">
+        </form>
+    {% else %}
+        <div class="text-center">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/51q6LsuTPrL.jpg" alt="You Shall Not Pass!!!">
+            <p>superuser only</p>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -6,7 +6,28 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from my_av.forms import PathForm
-from .utilities import nfos_finder, nfo_importer, videos_finder
+from .utilities import nfos_finder, import_nfo, videos_finder
+from tools import utilities
+
+
+def index(request):
+    return render(request, 'tools/index.html', {'form': PathForm()})
+
+
+def import_movie(request: WSGIRequest) -> HttpResponse:
+    if request.GET:
+        path_str = request.GET['path']
+        path = Path(path_str)
+        utilities.create_nfo(path)
+        nfo_path = Path(path_str[:-3] + 'nfo')
+        if nfo_path.exists():
+            import_nfo(nfo_path)
+            context = {'message': 'Done {}'.format(path_str)}
+        else:
+            context = {'message': 'Fail {}'.format(path_str)}
+    else:
+        context = {'message': ''}
+    return render(request, 'tools/create-nfo.html', context)
 
 
 def list_nfos(request: WSGIRequest) -> HttpResponse:
@@ -16,10 +37,6 @@ def list_nfos(request: WSGIRequest) -> HttpResponse:
     return render(request, 'tools/list-nfos.html', {'source_path': source_path, 'paths': paths})
 
 
-def tool(request):
-    return render(request, 'tools/tool.html', {'form': PathForm()})
-
-
 def parse_folder(request):
     form = PathForm(request.GET)
 
@@ -27,7 +44,7 @@ def parse_folder(request):
         source_folder_path_str = form.cleaned_data['path']
         source_folder_path = Path(source_folder_path_str)
         nfos_path = nfos_finder(source_folder_path)
-        [nfo_importer(path) for path in nfos_path]
+        [import_nfo(path) for path in nfos_path]
 
     else:
         nfos_path = []
@@ -45,7 +62,7 @@ def list_movie(request):
         return render(request, 'tools/list-paths.html', {'paths': movie_paths})
     else:
         context = {'error': form.errors, 'form': PathForm()}
-        return render(request, 'tools/tool.html', context)
+        return render(request, 'tools/index.html', context)
 
 
 def list_files(request, source_path: str):
@@ -55,7 +72,7 @@ def list_files(request, source_path: str):
         context = {'paths': movie_paths}
     else:
         context = dict()
-    return request(request, 'my_av/tools/list-files.html', context)
+    return render(request, 'my_av/tools/list-files.html', context)
 
 
 def import_nfos(request: WSGIRequest) -> HttpResponse:
@@ -63,6 +80,6 @@ def import_nfos(request: WSGIRequest) -> HttpResponse:
     path = Path(source_path)
     paths = nfos_finder(path)
     for nfo in paths:
-        nfo_importer(nfo)
+        import_nfo(nfo)
 
     return redirect(to=reverse('admin:index'))

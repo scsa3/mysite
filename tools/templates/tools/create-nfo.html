@@ -1,0 +1,10 @@
+{% extends 'my_av/base.html' %}
+{% block body %}
+    <form action="{% url 'tools:import-movie' %}" method="get">
+        <label for="path">Movie Path:</label>
+        <input id="path" type="text" name="path" value="" style="width: 100%">
+        <input type="submit" value="Import">
+    </form>
+    <hr>
+    {{ message }}
+{% endblock %}

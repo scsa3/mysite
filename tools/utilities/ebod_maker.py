@@ -9,6 +9,6 @@ def dummy_maker(source_directory: Path) -> None:
 
 if __name__ == '__main__':
     # arguments by hand
-    target_str = '/Users/weihan/mysite/temp/test'
+    target_str = '/Users/weihan/mysite/temp/movies'
 
     dummy_maker(Path(target_str))

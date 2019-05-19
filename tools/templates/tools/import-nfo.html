@@ -1,0 +1,9 @@
+{% extends 'my_av/base.html' %}
+{% block body %}
+    <form action="#" method="get">
+        <label for="path">NFO Path:</label>
+        <input id="path" type="text" name="path" value="" style="width: 100%">
+        <input type="submit" value="Import NFO">
+    </form>
+    {{ message }}
+{% endblock %}

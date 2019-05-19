@@ -4,7 +4,7 @@ from pathlib import Path
 from my_av.models import Video, Genre, Actress
 
 
-def nfo_importer(path: Path) -> None:
+def import_nfo(path: Path) -> None:
     tree = ET.parse(path)
     root = tree.getroot()
 
