@@ -1,18 +1,490 @@
 <div class="container-fluid text-center">
-    <img src="https://images-na.ssl-images-amazon.com/images/I/51q6LsuTPrL.jpg" alt="You Shall Not Pass!!!">
-    <form action="{% url 'my_av:index' %}" method="post">
-        {% csrf_token %}
+    <div>
         <div>
-            <label for="id_username">Username:</label>
-            <input id="id_username" type="text" name="username">
+            <p>本網站已依網站內容分級規定處理</p>
+            <p>警告︰您即將進入之看板內容需滿十八歲方可瀏覽。</p>
+            <p>若您尚未年滿十八歲，請點選離開。若您已滿十八歲，亦不可將本區之內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士瀏覽，或將本網站內容向該人士出示、播放或放映。</p>
         </div>
-        <div>
-            <label for="id_password">Password:</label>
-            <input id="id_password" type="password" name="password">
-        </div>
-        <div>
-            <input type="submit">
-        </div>
+        <form action="{% url 'my_av:index' %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="id_username">Username:</label>
+                <input id="id_username" type="text" name="username">
+            </div>
+            <div>
+                <label for="id_password">Password:</label>
+                <input id="id_password" type="password" name="password">
+            </div>
+            <div>
+                <input type="submit" value="同意 與 登入" class="btn btn-outline-primary">
+            </div>
 
-    </form>
+        </form>
+    </div>
+    <div>
+        <div ng-show="translatedText &amp;&amp; Object.keys(translatedText).length"
+             style="background: #EEE; padding: 10px;" class="">
+            <!-- ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Afrikaans: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-af"
+                      class="ng-binding">Slegs volwassenes. Nie geskik vir werk nie.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Arabic: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ar"
+                      class="ng-binding">الكبار فقط. غير مناسب للعمل</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Azerbaijani: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-az"
+                      class="ng-binding">Yalnız böyüklər. İş üçün uyğun deyil.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Belarusian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-be"
+                      class="ng-binding">Толькі для дарослых. Не падыходзіць для працы.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Bulgarian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-bg"
+                      class="ng-binding">Само за възрастни. Не е подходящ за работа.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Bengali: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-bn"
+                      class="ng-binding">শুধুমাত্র প্রাপ্তবয়স্ক কাজের জন্য উপযুক্ত নয়।</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Bosnian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-bs"
+                      class="ng-binding">Samo za odrasle. Nije pogodan za rad.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Catalan: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ca"
+                      class="ng-binding">Només per a adults. No apte per al treball.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Cebuano: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ceb"
+                      class="ng-binding">Katawhan lamang. Dili angay alang sa trabaho.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Czech: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-cs"
+                      class="ng-binding">Pouze pro dospělé. Není vhodný pro práci.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Welsh: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-cy"
+                      class="ng-binding">Oedolion yn unig. Ddim yn addas ar gyfer gwaith.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Danish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-da"
+                      class="ng-binding">Kun voksne. Ikke egnet til arbejde.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">German: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-de"
+                      class="ng-binding">Nur für Erwachsene. Nicht für die Arbeit geeignet.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Greek: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-el"
+                      class="ng-binding">Μόνο για ενήλικες. Δεν είναι κατάλληλο για δουλειά.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">English: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-en"
+                      class="ng-binding">Adult only. Not suitable for work.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Esperanto: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-eo"
+                      class="ng-binding">Adult only. Not suitable for work.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Spanish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-es"
+                      class="ng-binding">Sólo para adultos. No apto para el trabajo.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Estonian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-et"
+                      class="ng-binding">Ainult täiskasvanud. Ei sobi tööks.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Basque: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-eu"
+                      class="ng-binding">Helduak bakarrik. Ez da lanerako egokia.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Persian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-fa"
+                      class="ng-binding">بزرگسالان تنها برای کار مناسب نیست</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Finnish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-fi"
+                      class="ng-binding">Vain aikuinen. Ei sovellu työhön.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">French: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-fr"
+                      class="ng-binding">Réservé aux adultes. Ne convient pas pour le travail.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Irish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ga"
+                      class="ng-binding">Duine fásta amháin. Níl sé oiriúnach don obair.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Galician: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-gl"
+                      class="ng-binding">Só para adultos. Non apto para o traballo.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Gujarati: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-gu"
+                      class="ng-binding">માત્ર પુખ્ત. કામ માટે યોગ્ય નથી.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Hausa: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ha"
+                      class="ng-binding">Adult kawai. Ba dace da aiki ba.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Hindi: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-hi"
+                      class="ng-binding">केवल वयस्क। काम के लिए उपयुक्त नहीं है।</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Hmong: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-hmn"
+                      class="ng-binding">Adult only. Not suitable for work.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Croatian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-hr"
+                      class="ng-binding">Samo za odrasle. Nije prikladno za rad.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Haitian Creole: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ht"
+                      class="ng-binding">Adilt sèlman. Pa apwopriye pou travay.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Hungarian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-hu"
+                      class="ng-binding">Csak felnőtt. Nem alkalmas munkára.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Armenian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-hy"
+                      class="ng-binding">Միայն մեծահասակները: Աշխատանքի համար հարմար չէ:</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Indonesian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-id"
+                      class="ng-binding">Khusus dewasa. Tidak cocok untuk bekerja.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Igbo: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ig"
+                      class="ng-binding">Okenye naanị. Okwesighi maka ọrụ.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Icelandic: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-is"
+                      class="ng-binding">Aðeins fullorðinn. Ekki hentugur fyrir vinnu.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Italian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-it"
+                      class="ng-binding">Solo per adulti. Non adatto per il lavoro.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Hebrew: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-iw"
+                      class="ng-binding">למבוגרים בלבד. לא מתאים לעבודה.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Japanese: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ja"
+                      class="ng-binding">大人のみ仕事には向かない。</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Javanese: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-jw"
+                      class="ng-binding">Wong diwasa mung. Ora cocok kanggo karya.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Georgian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ka"
+                      class="ng-binding">ზრდასრული მხოლოდ. არ არის შესაფერისი სამუშაო.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Kazakh: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-kk"
+                      class="ng-binding">Ересектер ғана. Жұмысқа жарамсыз.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Khmer: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-km"
+                      class="ng-binding">មនុស្សពេញវ័យប៉ុណ្ណោះ។ មិនសមស្របសម្រាប់ការងារ។</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Kannada: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-kn"
+                      class="ng-binding">ವಯಸ್ಕರಲ್ಲಿ ಮಾತ್ರ. ಕೆಲಸಕ್ಕೆ ಸೂಕ್ತವಲ್ಲ.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Korean: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ko"
+                      class="ng-binding">성인용. 일에 적합하지 않습니다.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Latin: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-la"
+                      class="ng-binding">Adult only. Not suitable for work.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Lao: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-lo"
+                      class="ng-binding">ຜູ້ໃຫຍ່ພຽງແຕ່. ບໍ່ເຫມາະສົມສໍາລັບວຽກງານ.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Lithuanian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-lt"
+                      class="ng-binding">Tik suaugusieji. Netinka darbui.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Latvian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-lv"
+                      class="ng-binding">Tikai pieaugušajiem. Nav piemērots darbam.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Malagasy: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-mg"
+                      class="ng-binding">Adult only. Tsy mety amin&amp;#39;ny asa.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Maori: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-mi"
+                      class="ng-binding">Te pakeke anake. Kāore e tika ana mo te mahi.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Macedonian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-mk"
+                      class="ng-binding">Само за возрасни. Не е погодно за работа.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Malayalam: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ml"
+                      class="ng-binding">മുതിർന്നവർ മാത്രം. ജോലിയ്ക്ക് അനുയോജ്യമല്ല.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Mongolian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-mn"
+                      class="ng-binding">Насанд хүрэгчид. Ажилд тохирохгүй.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Marathi: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-mr"
+                      class="ng-binding">फक्त प्रौढ. कामासाठी योग्य नाही.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Malay: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ms"
+                      class="ng-binding">Dewasa sahaja. Tidak sesuai untuk kerja.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Maltese: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-mt"
+                      class="ng-binding">Adult biss. Mhux adattat għax-xogħol.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Myanmar (Burmese): </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-my"
+                      class="ng-binding">သာအရွယ်ရောက်ပြီးသူ။ အလုပ်အတွက်သင့်လျော်ဘူး။</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Nepali: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ne"
+                      class="ng-binding">केवल वयस्क कामको लागि उपयुक्त छैन।</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Dutch: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-nl"
+                      class="ng-binding">Alleen voor volwassenen. Niet geschikt voor werk.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Norwegian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-no"
+                      class="ng-binding">Bare voksne. Ikke egnet for arbeid.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Chichewa: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ny"
+                      class="ng-binding">Wamkulu yekha. Osayenera kugwira ntchito.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Punjabi: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-pa"
+                      class="ng-binding">ਬਾਲਗ਼ ਸਿਰਫ ਕੰਮ ਲਈ ਉਚਿਤ ਨਹੀਂ</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Polish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-pl"
+                      class="ng-binding">Tylko dla dorosłych. Nie nadaje się do pracy.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Portuguese: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-pt"
+                      class="ng-binding">Apenas adultos. Não é adequado para o trabalho.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Romanian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ro"
+                      class="ng-binding">Adult numai. Nu este potrivit pentru muncă.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Russian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ru"
+                      class="ng-binding">Только для взрослых. Не подходит для работы.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Sinhala: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-si"
+                      class="ng-binding">වැඩිහිටියෙක් පමණයි. වැඩ සඳහා සුදුසු නොවේ.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Slovak: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-sk"
+                      class="ng-binding">Len pre dospelých. Nie je vhodný na prácu.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Slovenian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-sl"
+                      class="ng-binding">Samo za odrasle. Ni primerno za delo.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Somali: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-so"
+                      class="ng-binding">Adult kaliya. U qalma shaqada.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Albanian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-sq"
+                      class="ng-binding">Vetëm për të rriturit. Jo i përshtatshëm për punë.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Serbian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-sr"
+                      class="ng-binding">Само за одрасле. Није погодан за рад.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Sesotho: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-st"
+                      class="ng-binding">E moholo feela. Ha e tšoanelehe bakeng sa mosebetsi.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Sundanese: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-su"
+                      class="ng-binding">Sawawa wungkul. Teu cocog pikeun karya.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Swedish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-sv"
+                      class="ng-binding">Endast vuxen. Ej lämplig för arbete.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Swahili: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-sw"
+                      class="ng-binding">Watu wazima tu. Siofaa kwa kazi.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Tamil: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ta"
+                      class="ng-binding">வயது வந்தோர் மட்டுமே. வேலைக்கு ஏற்றது இல்லை.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Telugu: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-te"
+                      class="ng-binding">అడల్ట్ మాత్రమే. పని కోసం సరిపడదు.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Tajik: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-tg"
+                      class="ng-binding">Танҳо калонсолон. Барои кор кардан мувофиқ нест.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Thai: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-th"
+                      class="ng-binding">ผู้ใหญ่เท่านั้น ไม่เหมาะกับการทำงาน</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Filipino: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-tl"
+                      class="ng-binding">Matanda lamang. Hindi angkop sa trabaho.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Turkish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-tr"
+                      class="ng-binding">Sadece yetişkin. İşe uygun değil.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Ukrainian: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-uk"
+                      class="ng-binding">Тільки для дорослих. Не підходить для роботи.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Urdu: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-ur"
+                      class="ng-binding">بالغ صرف کام کے لئے موزوں نہیں.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Uzbek: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-uz"
+                      class="ng-binding">Faqat kattalar. Ish uchun mos emas.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Vietnamese: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-vi"
+                      class="ng-binding">Chỉ dành cho người lớn. Không phù hợp với công việc.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Yiddish: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-yi"
+                      class="ng-binding">בלויז פֿאַר אַדאַלץ. ניט פּאַסיק פֿאַר אַרבעט.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Yoruba: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-yo"
+                      class="ng-binding">Agba nikan. Ko dara fun iṣẹ.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Chinese: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-zh"
+                      class="ng-binding">仅限成人。不适合工作。</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Chinese (Simplified): </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-zh-CN"
+                      class="ng-binding">仅限成人。不适合工作。</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Chinese (Traditional): </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-zh-TW"
+                      class="ng-binding">僅限成人。不適合工作。</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+            <div id="output" ng-repeat="(locale, translatedString) in translatedText" class="margin-top ng-scope">
+                <strong class="ng-binding">Zulu: </strong>
+                <span ng-click="highlightTranslatedString(locale)" id="selectedText-zu"
+                      class="ng-binding">Umuntu omdala kuphela. Akufanelekile emsebenzini.</span>
+            </div><!-- end ngRepeat: (locale, translatedString) in translatedText -->
+        </div>
+    </div>
 </div>
