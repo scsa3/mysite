@@ -119,6 +119,10 @@ def filter_soap(request):
     return render(request, 'my_av/filter-soap.html', ctx)
 
 
+def filter_(request):
+    pass
+
+
 def temp(request: WSGIRequest) -> HttpResponse:
     print(request.get_full_path())
     # return redirect(request.get_full_path)
