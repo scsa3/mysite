@@ -43,8 +43,8 @@ class GenreInline(admin.TabularInline):
 
 class VideoAdmin(admin.ModelAdmin):
     list_per_page = 1000
-
-    # list_filter = ('actress__name', 'genre__name')
+    test = 123
+    list_filter = ('actress__name', 'genre__name')
     # list_display = ('get_test', 'title',)
     # list_display_links = ('get_test', 'title',)
     # search_fields = ('dvd_id',)

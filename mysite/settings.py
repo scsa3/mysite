@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'my_av.apps.MyAvConfig',
+    'my_av_v2.apps.MyAvV2Config',
     'for_test.apps.ForTestConfig',
     'tools.apps.ToolsConfig',
 ]

@@ -2,10 +2,13 @@ import subprocess
 
 from django.contrib.auth import authenticate, login, logout
 from django.core.handlers.wsgi import WSGIRequest
+from django.forms import modelformset_factory, Form
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, FormView
 
-from .models import Video, Actress, Genre
+from my_av.forms import ActressModelForm
+from .models import Actress, Genre, Video
 
 
 def index(request: WSGIRequest) -> HttpResponse:
@@ -135,3 +138,43 @@ def temp(request: WSGIRequest) -> HttpResponse:
 def play_movie(request: WSGIRequest) -> HttpResponse:
     subprocess.run(['vlc', 'http://mirror.cessen.com/blender.org/peach/trailer/trailer_iphone.m4v'])
     return redirect(request.get_full_path)
+
+
+def my_test(request: WSGIRequest) -> HttpResponse:
+    ActressFormSet = modelformset_factory(Actress, form=ActressModelForm)
+    return render(request, 'test.html', {'formset': ActressFormSet})
+
+
+class ActressList(ListView):
+    queryset = Actress.objects.all().order_by('name')
+
+
+class MovieList(ListView):
+    queryset = Video.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'actress_list': ActressList.queryset,
+        })
+        return context
+
+
+class FormSetView(FormView):
+    form_class = modelformset_factory(Actress, form=ActressModelForm)
+    template_name = 'my_av/form_set_view.html'
+    success_url = '/my_av/form-set-view/'
+
+    def form_valid(self, form: Form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        content = form.cleaned_data[0]['id']
+        print(content.id)
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        ids = request.GET.getlist('id')
+        ActressFormset = modelformset_factory(Actress, form=ActressModelForm)
+        formset = ActressFormset(queryset=Actress.objects.filter(id__in=ids))
+        data = self.get_context_data(form=formset)
+        return self.render_to_response(data)

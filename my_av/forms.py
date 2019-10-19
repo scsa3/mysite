@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import formset_factory, modelformset_factory
-from .models import Genre
+
+from .models import Genre, Actress
 
 
 class ActressForm(forms.Form):
@@ -20,3 +21,9 @@ class PathForm(forms.Form):
 
 PathFormSet = formset_factory(PathForm)
 GenreFormSet = modelformset_factory(Genre, fields=['id'])
+
+
+class ActressModelForm(forms.ModelForm):
+    class Meta:
+        model = Actress
+        fields = '__all__'

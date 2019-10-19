@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Movie</h1>
+<form action="" method="get">
+    {{ filter.form.as_p }}
+    <input type="submit"/>
+</form>
+<ul>
+    {% for movie in object_list %}
+        <li>{{ movie.release_date|date }} - {{ movie.title }}</li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

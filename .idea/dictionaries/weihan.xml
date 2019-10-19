@@ -2,8 +2,10 @@
   <dictionary name="weihan">
     <words>
       <w>fanart</w>
+      <w>filterset</w>
       <w>navbar</w>
       <w>nfos</w>
+      <w>releasedate</w>
     </words>
   </dictionary>
 </component>
