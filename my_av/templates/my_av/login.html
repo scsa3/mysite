@@ -8,15 +8,17 @@
         <form action="{% url 'my_av:index' %}" method="post">
             {% csrf_token %}
             <div>
-                <label for="id_username">Username:</label>
-                <input id="id_username" type="text" name="username">
+{#                <label for="id_username">Username:</label>#}
+{#                <input id="id_username" type="text" name="username" value="demouser">#}
+                <input id="id_username" type="hidden" name="username" value="demouser">
             </div>
             <div>
-                <label for="id_password">Password:</label>
-                <input id="id_password" type="password" name="password">
+{#                <label for="id_password">Password:</label>#}
+{#                <input id="id_password" type="password" name="password" value="S5ZFAxJc6HTMSHz">#}
+                <input id="id_password" type="hidden" name="password" value="S5ZFAxJc6HTMSHz">
             </div>
             <div>
-                <input type="submit" value="同意 與 登入" class="btn btn-outline-primary">
+                <input type="submit" value="同意 與 登入 | Agree | 同意する" class="btn btn-outline-primary">
             </div>
 
         </form>
