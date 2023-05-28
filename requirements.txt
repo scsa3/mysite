@@ -4,4 +4,4 @@ PyQt5==5.12.1
 PyQt5-sip==4.19.15
 PyQt5-stubs==5.12.1.0
 pytz==2019.1
-sqlparse==0.3.0
+sqlparse==0.4.4
